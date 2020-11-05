@@ -8,16 +8,16 @@ from .forms import HabitForm, RecordForm
 def habit_list(request):
     habits = Habit.objects.all()
 
-    return render(request, "habits/habit_list.html", {"habits": habits})
+    return render(request, "habit_list.html", {"habits": habits})
 
 
 def habit_detail(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
 
-    return render(request, "habits/habit_detail.html", {"habit": habit})
+    return render(request, "habit_detail.html", {"habit": habit})
 
 
-def create_habit(request, pk):
+def create_habit(request):
     if request.method == 'GET':
         form = HabitForm()
 
@@ -27,7 +27,7 @@ def create_habit(request, pk):
             habit = form.save()
             return redirect("habit_detail", pk=habit.pk)
 
-    return render(request, "habits/create_habit.html", {"form": form})
+    return render(request, "create_habit.html", {"form": form})
 
 
 def edit_habit(request, pk):
@@ -42,7 +42,7 @@ def edit_habit(request, pk):
             habit = form.save()
             return redirect("habit_detail", pk=habit.pk)
 
-    return render(request, "habits/edit_habit.html", {"habit": habit, "form": form})
+    return render(request, "edit_habit.html", {"habit": habit, "form": form})
 
 
 def delete_habit(request, pk):
@@ -52,4 +52,4 @@ def delete_habit(request, pk):
         habit.delete()
         return redirect("habit_list")
 
-    return render(request, "habits/delete_habit.html", {"habit": habit})
+    return render(request, "delete_habit.html", {"habit": habit})
