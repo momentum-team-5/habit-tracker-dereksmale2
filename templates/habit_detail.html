@@ -11,7 +11,7 @@
         {% for record in habit.records.all %}
         <li>{{ habit.records }}
             {% if request.user.is_authenticated and request.user == habit.user %}
-            <a class="red" href="{% url 'delete_record' pk=habit.pk %}">Delete This Record</a>
+            <a href="{% url 'delete_record' pk=habit.pk %}">Delete This Record</a>
         {% endif %}
         </li>
         {% endfor %}

@@ -87,22 +87,6 @@ def create_record(request, habit_pk):
 
 
 @login_required
-def edit_record(request, pk):
-    record = get_object_or_404(Record.objects.filter(habit__user=request.user), pk=pk)
-
-    if request == 'GET':
-        form = RecordForm(instance=record)
-
-    else:
-        form = RecordForm(instance=record, data=request.POST)
-        if form.is_valid():
-            record = form.save()
-            return redirect("habit_detail", pk=record.pk)
-
-    return render(request, "edit_record.html", {"record": record, "form": form})
-
-
-@login_required
 def delete_record(request, pk):
     record = get_object_or_404(Record.objects.filter(habit__user=request.user), pk=pk)
 

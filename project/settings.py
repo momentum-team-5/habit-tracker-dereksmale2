@@ -128,7 +128,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-SIMPLE_BACKEN_REDIRECT_URL = '/'
+SIMPLE_BACKEND_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
 # Custom user model
