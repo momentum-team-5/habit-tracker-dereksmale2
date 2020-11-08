@@ -13,8 +13,20 @@ def habit_list(request):
 
 def habit_detail(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
+    records = habit.records.all()
 
-    return render(request, "habit_detail.html", {"habit": habit})
+    if request.method == 'GET':
+        form = RecordForm()
+
+    else:
+        form = RecordForm(data=request.POST)
+        if form.is_valid():
+            record = form.save(commit=False)
+            record.habit = habit
+            record.save()
+            return redirect(to="habit_detail", pk=habit.pk)
+
+    return render(request, "habit_detail.html", {"habit": habit, "records": records, "form": form})
 
 
 @login_required
@@ -61,13 +73,6 @@ def delete_habit(request, pk):
 
 
 @login_required
-def record_list(request):
-    records = Record.objects.all()
-
-    return render(request, "record_list.html", {"records": records})
-
-
-@login_required
 def create_record(request, habit_pk):
     habit = get_object_or_404(request.user.habits, pk=habit_pk)
 
@@ -97,7 +102,7 @@ def delete_record(request, pk):
     return render(request, "delete_record.html", {"record": record})
 
 
-def search(request):
+def habit_search(request):
     if request.method == "GET":
         form = SearchForm()
 
@@ -105,9 +110,9 @@ def search(request):
         form = SearchForm(data=request.POST)
 
     if form.is_valid():
-        habit = form.cleaned_data['habit']
-        habit = Habit.objects.filter(habit__contains=habit)
+        name = form.cleaned_data['name']
+        name = Habit.objects.filter(name__contains=name)
 
-        return render(request, "search_results.html", {"habit": habit})
+        return render(request, "search_results.html", {"name": name})
 
-    return render(request, "search.html", {"form": form})
+    return render(request, "habit_search.html", {"form": form})

@@ -7,11 +7,11 @@
 <div>
     {% for habit in habits %}
     <div>
-        <h2><a id="link" href="{% url 'habit_detail' pk=habit.pk %}">{{ habit.name }}</a></h2>
+        <h2><a href="{% url 'habit_detail' pk=habit.pk %}">{{ habit.name }}</a></h2>
         <p id="habit_info"> 
         {% if request.user.is_authenticated and request.user == habit.user %}
-        <a id="link" href="{% url 'edit_habit' pk=habit.pk %}">Edit Habit</a><br>  
-        <a id="link" href="{% url 'delete_habit' pk=habit.pk %}">Delete Habit</a><br>
+        <a href="{% url 'edit_habit' pk=habit.pk %}">Edit Habit</a><br>  
+        <a href="{% url 'delete_habit' pk=habit.pk %}">Delete Habit</a><br>
         {% endif %}
         </p>
     </div>

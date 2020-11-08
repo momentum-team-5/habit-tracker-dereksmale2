@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Search Results</h3>
+
+<div>
+{% for habit in habits %}
+    <div>
+        <h4><a href="{% url 'habit_detail' pk=habit.pk %}">{{ habit.name }}</a></h4>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Habit Search</h3>
+
+<form class="search-form" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Search All Habits">
+</form>
+{% endblock %}

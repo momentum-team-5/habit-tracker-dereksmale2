@@ -20,4 +20,4 @@ class RecordForm(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-    habit = forms.CharField(max_length=255)
+    name = forms.CharField(max_length=255)
