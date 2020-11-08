@@ -9,9 +9,9 @@
 <div class="flex flex-wrap"> 
     <ul>
         {% for record in habit.records.all %}
-        <li>{{ habit.records }}
+        <li>{{ record.record_response }}
             {% if request.user.is_authenticated and request.user == habit.user %}
-            <a href="{% url 'delete_record' pk=habit.pk %}">Delete This Record</a>
+            <a href="{% url 'delete_record' pk=record.pk %}">Delete This Record</a>
         {% endif %}
         </li>
         {% endfor %}
