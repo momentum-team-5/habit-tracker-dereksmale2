@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Add a Habit</h1>
+<h1>Add a Record</h1>
 
 <div>
-    <form action="{% url 'create_habit' %}" method="POST">
+    <form action="{% url 'create_record' habit_pk=habit.pk %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
     <div>
-        <button type="submit">Add Habit</button>
+        <button type="submit">Submit a Record</button>
     </div>
     </form>
 </div>

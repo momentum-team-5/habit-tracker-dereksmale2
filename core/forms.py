@@ -6,7 +6,6 @@ class HabitForm(forms.ModelForm):
     class Meta:
         model = Habit
         fields = [
-            "user",
             "name",
         ]
 
@@ -15,6 +14,10 @@ class RecordForm(forms.ModelForm):
     class Meta:
         model = Record
         fields = [
-            "habit",
+            "record_response",
             "date_completed",
         ]
+
+
+class SearchForm(forms.Form):
+    habit = forms.CharField(max_length=255)

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ habit.name }}</h1>
+{% if request.user.is_authenticated %}
+<a id="link" href="{% url 'create_record' habit_pk=habit.pk %}">Add a Record</a>
+{% endif %}
+
+<div class="flex flex-wrap"> 
+    <ul>
+        {% for record in habit.records.all %}
+        <li>{{ habit.records }}
+            {% if request.user.is_authenticated and request.user == habit.user %}
+            <a class="red" href="{% url 'delete_record' pk=habit.pk %}">Delete This Record</a>
+        {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>  
+{% endblock %}

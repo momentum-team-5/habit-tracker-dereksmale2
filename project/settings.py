@@ -128,6 +128,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+SIMPLE_BACKEN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
+
 # Custom user model
 
 AUTH_USER_MODEL = 'core.User'
